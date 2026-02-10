@@ -1,0 +1,4 @@
+interface:
+  display_name: "tech-designer"
+  short_description: "Codebase-aware technical spec author"
+  default_prompt: "Take the feature requirements (from user input or previous skill handoff), analyze AGENTS.md and the existing codebase architecture/patterns/style, ask only decision-critical implementation questions, produce a full technical spec for what and how to build, write docs/spec.md, and recommend running $project-manager."

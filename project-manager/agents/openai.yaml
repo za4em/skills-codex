@@ -1,0 +1,4 @@
+interface:
+  display_name: "project-manager"
+  short_description: "Spec-driven implementation planner"
+  default_prompt: "Read docs/spec.md, build a strict implementation plan with checkbox tasks, clear boundaries and completion criteria per step, write docs/plan.md with traceability to the spec, then advise clearing context/starting a new session and running $vibe-coder."
