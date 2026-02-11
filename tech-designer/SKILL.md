@@ -1,6 +1,6 @@
 ---
 name: tech-designer
-description: Technical design and implementation-spec creation for existing codebases. Use when the user provides feature requirements directly or via a previous skill (for example `$product-manager`) and needs a concrete spec for how to implement it in the current repository. Analyze `AGENTS.md`, existing architecture, design approach, code style, patterns, and reusable components; ask targeted implementation-decision questions; then write `docs/spec.md` and recommend `$project-manager`.
+description: Technical design and implementation-spec creation for existing codebases. Use when the user provides feature requirements directly or via a previous skill (for example `$product-manager`) and needs a concrete spec for how to implement it in the current repository. Analyze `AGENTS.md`, existing architecture, design approach, code style, patterns, and reusable components; ask targeted implementation-decision questions; then write `docs/spec.md` and `docs/todo.md` with phased implementation checklists, and recommend `$vibe-coder`.
 ---
 
 # Tech Designer
@@ -39,13 +39,19 @@ Use existing architecture and patterns first. Keep decisions traceable to user i
 - Include integration points, state/data flow, error handling, and validation strategy.
 - Include testing strategy and rollout/verification approach.
 
-6. Persist specification.
+6. Produce phased implementation checklist.
+- Build implementation phases that map to the technical design (for example: setup, core build, integration, verification).
+- Under each phase, add actionable checklist items.
+- Each checklist item must reference where it traces back in `docs/spec.md` (section or file-level change).
+
+7. Persist artifacts.
 - Write or update `docs/spec.md` with the finalized technical spec.
 - Include an explicit "Input Traceability" section linking final design decisions back to user requirements and prior handoffs.
-- If critical decisions remain unresolved, ask questions first, then finalize and write `docs/spec.md` after answers.
+- Write or update `docs/todo.md` with implementation phases and checklists aligned to the finalized spec.
+- If critical decisions remain unresolved, ask questions first, then finalize and write both `docs/spec.md` and `docs/todo.md` after answers.
 
-7. Advise next skill.
-- End by recommending `$project-manager` for planning/execution management.
+8. Advise next skill.
+- End by recommending start a new session and use `$vibe-coder` for implementation execution.
 
 ## Output Format
 
@@ -71,11 +77,12 @@ Use this response structure:
 1. [question that changes implementation approach]
 2. [question that changes component/module placement]
 
-### Spec Write Status
+### Artifact Write Status
 - [confirm `docs/spec.md` written, or list blockers]
+- [confirm `docs/todo.md` written, or list blockers]
 
 ### Next Step
-- Recommend: `Run $project-manager.`
+- Recommend: `Run $vibe-coder.`
 
 ## `docs/spec.md` Template
 
@@ -125,6 +132,38 @@ Write `docs/spec.md` using this structure:
 - Release/verification checkpoints
 ```
 
+## `docs/todo.md` Template
+
+Write `docs/todo.md` using this structure:
+
+```md
+# Implementation Todo: [Feature Name]
+
+## Phase 1: Setup and Contracts
+- [ ] [task] (ref: spec §[section], file: [path])
+- [ ] [task] (ref: spec §[section], file: [path])
+
+## Phase 2: Core Implementation
+- [ ] [task] (ref: spec §[section], file: [path])
+- [ ] [task] (ref: spec §[section], file: [path])
+
+## Phase 3: Integration and Data Flow
+- [ ] [task] (ref: spec §[section], file: [path])
+- [ ] [task] (ref: spec §[section], file: [path])
+
+## Phase 4: Validation and Error Handling
+- [ ] [task] (ref: spec §[section], file: [path])
+- [ ] [task] (ref: spec §[section], file: [path])
+
+## Phase 5: Tests and Verification
+- [ ] [task] (ref: spec §[section], test: [path])
+- [ ] [task] (ref: spec §[section], manual: [verification step])
+
+## Phase 6: Rollout Readiness
+- [ ] [task] (ref: spec §[section], checkpoint: [note])
+- [ ] [task] (ref: spec §[section], checkpoint: [note])
+```
+
 ## Question Rules
 
 - Ask only questions that materially change implementation design.
@@ -138,5 +177,5 @@ Write `docs/spec.md` using this structure:
 - Reuse existing patterns/components over introducing unnecessary abstractions.
 - Keep recommendations aligned with current architecture and code style.
 - Preserve earlier approved input from user or `$product-manager` in the final spec.
-- Do not start coding in this skill; produce and persist technical specification only.
-- End with a recommendation to run `$project-manager`.
+- Do not start coding in this skill; produce and persist specification + todo artifacts only.
+- End with a recommendation to run `$vibe-coder`.

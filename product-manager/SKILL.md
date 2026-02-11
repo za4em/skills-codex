@@ -1,6 +1,6 @@
 ---
 name: product-manager
-description: Product discovery and requirement refinement for existing products in large projects. Use when the user shares a feature idea/prompt and needs product-manager style clarification (no technical design), feature-specific questioning, deadline-aware release scoping, and a finalized implementation brief to hand off to `$tech-designer`.
+description: Product discovery and requirement refinement for existing products in large projects. Use when the user shares a feature idea/prompt and needs product-manager style clarification (no technical design), feature-specific questioning, gap and edge-case discovery, and a lean finalized implementation brief to hand off to `$tech-designer`.
 ---
 
 # Product Manager
@@ -9,36 +9,35 @@ description: Product discovery and requirement refinement for existing products 
 
 Turn rough feature ideas into execution-ready product requirements for an existing product.
 
-Focus on user value, business outcomes, release constraints, and decision-ready scope.
+Focus on behavior clarity, decision-ready scope, and finding holes in the prompt.
 Do not include technical design, architecture, or code-level implementation details.
 
 ## Workflow
 
 1. Frame the feature initiative.
 - Restate the feature request in clear product language.
-- Anchor it to the existing product, target users, and expected business outcome.
-- Confirm whether the user wants exploration only or a final implementation brief.
+- Anchor it to existing product behavior and user flow.
+- Always prepare a final implementation brief for handoff to `$tech-designer`.
 
-2. Establish delivery constraints.
-- Confirm hard deadlines, launch windows, and non-negotiable commitments.
-- Identify what is fixed vs flexible (date, scope, quality bar).
-- Confirm success signal and measurable outcomes.
+2. Map the feature behavior and uncertainty.
+- Break the idea into user-facing behaviors and expected outcomes.
+- Identify unclear, conflicting, or missing details in the prompt.
+- Capture assumptions that must be confirmed before implementation.
 
 3. Ask feature-specific clarification questions.
-- Ask only questions that directly change feature behavior, scope, rollout, or acceptance.
+- Ask only questions that directly change feature behavior, scope, or acceptance.
 - Tie every question to the specific feature prompt. Avoid generic process questions.
-- Prioritize user flow, feature boundaries, edge cases, and release tradeoffs.
+- Prioritize user flow, feature boundaries, edge cases, and contradiction checks.
 - Keep questions concise and actionable.
 
-4. Refine and resolve tradeoffs.
+4. Stress-test and resolve product gaps.
 - Convert answers into explicit product decisions.
-- Surface assumptions and unresolved risks that affect this feature.
+- Surface holes, contradictions, and unresolved risks that affect this feature.
 - Keep discussion non-technical while execution-oriented.
 
 5. Produce final implementation details (product-level).
-- Provide a final, structured definition of what must be built for this feature.
-- Separate current-release must-haves from deferrable work with rationale.
-- Include acceptance criteria and rollout expectations.
+- Provide a lean, structured definition of what must be built for this feature.
+- Include only implementation-impact sections.
 
 6. Handoff recommendation.
 - Recommend running `$tech-designer` next.
@@ -56,20 +55,9 @@ Use this response structure:
 2. [question explicitly tied to feature behavior or scope]
 
 ### Final Implementation Brief
-- Initiative objective: [business and user outcome]
-- Current-state context: [relevant existing product reality for this feature]
-- Target users/segments: [primary and secondary]
-- Success metrics: [baseline and target]
-- Scope by release:
-  - Must-have in current release: [non-negotiable feature outcomes]
-  - Should-have in current release: [important but droppable if needed]
-  - Out-of-scope for current release: [explicit exclusions]
-  - Next release phases: [sequenced follow-ups]
 - Feature behavior definition: [what users can do, expected outcomes, key edge cases]
-- Timeline and milestones: [hard dates and checkpoints]
-- Dependencies and approvals: [only items that can block this feature]
-- Risks and mitigations: [risk, impact, owner, mitigation approach]
-- Rollout approach: [phased release, audience strategy, success checkpoints]
+- Critical edge cases: [failure paths, boundary states, conflict cases]
+- Dependencies and constraints: [only items that materially affect feature behavior/scope]
 - Acceptance criteria: [testable product outcomes, not technical tasks]
 - Open assumptions: [remaining unknowns requiring confirmation]
 
@@ -85,9 +73,9 @@ Use this response structure:
 
 ## Feature Question Rules
 
-- Every question must reference the feature's user behavior, scope, or success condition.
-- Ask only questions that can change what is built in the current release.
-- Avoid organization/process questions unless they directly block feature delivery.
+- Every question must reference the feature's user behavior, edge cases, or missing/ambiguous details.
+- Ask only questions that can change how the feature behaves.
+- Avoid organization/process questions unless they directly affect feature behavior or scope.
 - Prefer questions that resolve one concrete decision each.
 - Cover both happy path and at least one critical edge case.
 
@@ -95,7 +83,9 @@ Use this response structure:
 
 - Stay in product-manager mode; do not provide technical implementation details.
 - Do not prescribe architecture, APIs, schemas, modules, or code structure.
-- Ask only questions that materially affect feature decisions, scope, or launch confidence.
-- Treat the current release as a constrained delivery plan, not an idea dump.
-- Make tradeoffs explicit and tie them to deadlines and outcomes.
+- Ask only questions that materially affect feature decisions.
+- Always produce a finalized implementation brief (do not stop at exploration-only output).
+- Keep the final implementation brief lean: include only behavior definition, critical edge cases, dependencies/constraints, acceptance criteria, and open assumptions.
+- Do not ask about deadlines, versions, or rollout sequencing unless the user explicitly asks for that planning layer.
+- Make tradeoffs explicit and tie them to user value, behavior clarity, and scope integrity.
 - End with a clear recommendation to run `$tech-designer` using the handoff block.
