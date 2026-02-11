@@ -35,6 +35,12 @@ This repository contains workflow skills that can be used to run a structured en
 - Stage changes and create a conventional commit message.
 - Keep message scope/type/subject/body aligned with repository commit style.
 
+## Additional Utility Skill
+
+7. `$branch-description`
+- Generate fixed-format GitLab PR/MR descriptions from a branch commit range.
+- Useful for release branches (for example `release/x.y.z`) and deterministic changelog-style summaries.
+
 ## Skills Included
 
 - `product-manager`
@@ -43,3 +49,4 @@ This repository contains workflow skills that can be used to run a structured en
 - `vibe-coder`
 - `code-reviewer`
 - `commit`
+- `branch-description`

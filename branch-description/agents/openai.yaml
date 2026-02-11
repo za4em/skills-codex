@@ -1,0 +1,4 @@
+interface:
+  display_name: "branch-description"
+  short_description: "Generate fixed-format GitLab PR/MR descriptions"
+  default_prompt: "Summarize commits in a branch into a GitLab merge request description using the exact branch-description template and section order."
