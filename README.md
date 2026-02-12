@@ -42,6 +42,10 @@ This repository contains workflow skills that can be used to run a structured en
 - Generate fixed-format GitLab PR/MR descriptions from a branch commit range.
 - Useful for release branches (for example `release/x.y.z`) and deterministic changelog-style summaries.
 
+7. `$figma-implement`
+- Translate Figma nodes into production-ready UI code with 1:1 visual fidelity.
+- Use when implementing UI directly from Figma URLs or node IDs.
+
 ## Skills Included
 
 - `product-manager`
@@ -50,3 +54,4 @@ This repository contains workflow skills that can be used to run a structured en
 - `code-reviewer`
 - `commit`
 - `branch-description`
+- `figma-implement`
