@@ -1,4 +1,0 @@
-interface:
-  display_name: "code-reviewer"
-  short_description: "Review changes against spec, todo, and patterns"
-  default_prompt: "Review uncommitted changes against docs/spec.md and docs/todo.md boundaries/checklist intent, plus repository architecture/patterns and code quality. Report findings by severity with file references and concrete fixes. If no issues are found, recommend running $commit."

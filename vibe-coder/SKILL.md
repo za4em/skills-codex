@@ -50,7 +50,7 @@ Read `docs/spec.md` and `docs/todo.md`, implement the next unchecked checklist s
 - Note follow-up risks, blockers, or remaining questions.
 
 8. Recommend handoff when done.
-- If no unchecked checklist items remain in `docs/todo.md`, advise the user to clear context/start a new session and run `$code-reviewer`.
+- If no unchecked checklist items remain in `docs/todo.md`, advise the user to clear context/start a new session and run `$commit`.
 
 ## Output Format
 
@@ -81,7 +81,7 @@ Use this structure after each execution cycle.
 - [next unchecked checklist item, if any]
 
 ### Final Handoff (When Todo Complete)
-- [if all items are complete: `Clear context/start a new session, then run $code-reviewer.`]
+- [if all items are complete: `Clear context/start a new session, then run $commit.`]
 
 ## Guardrails
 
@@ -90,4 +90,4 @@ Use this structure after each execution cycle.
 - Do not drift beyond `docs/spec.md` scope or `docs/todo.md` boundaries without user approval.
 - Prefer minimal, targeted changes over broad refactors.
 - Prefer existing components and established repository approaches before creating new ones.
-- When all checklist items are complete, end with: `Clear context/start a new session, then run $code-reviewer.`
+- When all checklist items are complete, end with: `Clear context/start a new session, then run $commit.`

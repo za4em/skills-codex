@@ -1,4 +1,4 @@
 interface:
   display_name: "vibe-coder"
   short_description: "Implement next checklist step from spec and todo"
-  default_prompt: "Read docs/spec.md and docs/todo.md, implement the next unchecked checklist item within defined todo boundaries using existing codebase patterns/components, verify against spec acceptance criteria, and mark the completed todo item as done. If all todo items are complete, advise: clear context/start a new session, then run $code-reviewer."
+  default_prompt: "Read docs/spec.md and docs/todo.md, implement the next unchecked checklist item within defined todo boundaries using existing codebase patterns/components, verify against spec acceptance criteria, and mark the completed todo item as done. If all todo items are complete, advise: clear context/start a new session, then run $commit."

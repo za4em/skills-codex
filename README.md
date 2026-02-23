@@ -25,24 +25,19 @@ This repository contains workflow skills that can be used to run a structured en
 - Implement the next unchecked item from `docs/todo.md`.
 - Keep code aligned to `docs/spec.md` and todo boundaries.
 - Mark completed checklist items in `docs/todo.md`.
-- When all items are done, advise: clear context/start new session, then run `$code-reviewer`.
+- When all items are done, advise: clear context/start new session, then run `$commit`.
 
-4. `$code-reviewer`
-- Review uncommitted changes against `docs/spec.md`, `docs/todo.md`, and repository patterns.
-- Report findings by severity with concrete fixes.
-- If no issues remain, recommend running `$commit`.
+## Additional Utility Skills
 
-## Additional Utility Skill
-
-5. `$commit`
+4. `$commit`
 - Stage changes and create a conventional commit message.
 - Keep message scope/type/subject/body aligned with repository commit style.
 
-6. `$branch-description`
+5. `$branch-description`
 - Generate fixed-format GitLab PR/MR descriptions from a branch commit range.
 - Useful for release branches (for example `release/x.y.z`) and deterministic changelog-style summaries.
 
-7. `$figma-implement`
+6. `$figma-implement`
 - Translate Figma nodes into production-ready UI code with 1:1 visual fidelity.
 - Use when implementing UI directly from Figma URLs or node IDs.
 
@@ -51,7 +46,6 @@ This repository contains workflow skills that can be used to run a structured en
 - `product-manager`
 - `tech-designer`
 - `vibe-coder`
-- `code-reviewer`
 - `commit`
 - `branch-description`
 - `figma-implement`
