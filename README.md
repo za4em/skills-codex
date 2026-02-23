@@ -4,7 +4,7 @@ This repository contains workflow skills that can be used to run a structured en
 
 ## Recommended Flow
 
-1. `$prompt-engineer`
+1. Optional: `$prompt-engineer`
 - Refine a feature idea from a product perspective without technical design.
 - Ask only feature-specific clarification questions that affect behavior.
 - Produce a lean finalized brief:
@@ -13,9 +13,10 @@ This repository contains workflow skills that can be used to run a structured en
   - Dependencies and constraints
   - Acceptance criteria
   - Open assumptions
-- Handoff to `$tech-designer`.
+- Handoff to `$plan-designer`.
+- Optional path: start at `$plan-designer` when requirements are already clear.
 
-2. `$tech-designer`
+2. `$plan-designer`
 - Analyze inputs + `AGENTS.md` + current codebase patterns.
 - Define implementation approach and file-level design.
 - Write `docs/plan.md` with overview, high-level technical decisions, and checklist.
@@ -45,7 +46,7 @@ This repository contains workflow skills that can be used to run a structured en
 ## Skills Included
 
 - `prompt-engineer`
-- `tech-designer`
+- `plan-designer`
 - `vibe-coder`
 - `commit`
 - `branch-description`

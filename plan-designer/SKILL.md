@@ -1,9 +1,9 @@
 ---
-name: tech-designer
+name: plan-designer
 description: Produce implementation plans for existing codebases. Use when requirements are ready and the user needs a concrete technical design with models/entities, method/system contracts, module boundaries, and an execution checklist in `docs/plan.md` (with optional phased `docs/plan_XX.md` files for large features).
 ---
 
-# Tech Designer
+# Plan Designer
 
 ## Overview
 

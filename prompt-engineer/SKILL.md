@@ -1,5 +1,6 @@
+---
 name: prompt-engineer
-description: Refine feature ideas into a precise, non-technical brief for `$tech-designer`. Use when the user shares a feature idea and needs behavior clarification, boundary definition, edge-case discovery, and acceptance criteria before technical design.
+description: Refine feature ideas into a precise, non-technical brief for `$plan-designer`. Use when the user shares a feature idea and needs behavior clarification, boundary definition, edge-case discovery, and acceptance criteria before technical design.
 ---
 
 # Prompt Engineer
@@ -8,7 +9,7 @@ description: Refine feature ideas into a precise, non-technical brief for `$tech
 
 Convert a rough feature idea into precise product requirements.
 
-Output must be non-technical and ready for handoff to `$tech-designer`.
+Output must be non-technical and ready for handoff to `$plan-designer`.
 
 ## Workflow
 
@@ -32,7 +33,7 @@ Output must be non-technical and ready for handoff to `$tech-designer`.
 - Keep content non-technical.
 
 5. Handoff.
-- Recommend running `$tech-designer`.
+- Recommend running `$plan-designer`.
 - Provide a ready-to-pass handoff block.
 
 ## Output Format
@@ -56,9 +57,9 @@ Use this response structure:
 - Open assumptions: [assumptions pending confirmation]
 
 ### Next Step
-- Recommend: `Run $tech-designer and pass the handoff block below.`
+- Recommend: `Run $plan-designer and pass the handoff block below.`
 
-### Handoff for `$tech-designer`
+### Handoff for `$plan-designer`
 ```md
 # Product Brief for Technical Design
 
@@ -78,4 +79,4 @@ Use this response structure:
 - Do not output implementation tasks or file-level plans.
 - Always provide a Final Brief, even if assumptions remain.
 - Make tradeoffs explicit in user-value and behavior terms.
-- End with a clear recommendation to run `$tech-designer`.
+- End with a clear recommendation to run `$plan-designer`.

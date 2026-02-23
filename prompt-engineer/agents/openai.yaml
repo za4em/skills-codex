@@ -1,4 +1,4 @@
 interface:
   display_name: "prompt-engineer"
   short_description: "Precise feature brief refinement"
-  default_prompt: "Refine the user's feature idea into a precise, non-technical brief. Clarify behavior, boundaries, dependencies/constraints, edge cases, and acceptance criteria. Ask only decision-critical feature questions, keep questions concise, and record explicit assumptions when answers are unavailable. Output a finalized product brief and recommend running $tech-designer with a handoff block."
+  default_prompt: "Refine the user's feature idea into a precise, non-technical brief. Clarify behavior, boundaries, dependencies/constraints, edge cases, and acceptance criteria. Ask only decision-critical feature questions, keep questions concise, and record explicit assumptions when answers are unavailable. Output a finalized product brief and recommend running $plan-designer with a handoff block."
