@@ -1,4 +1,4 @@
 interface:
   display_name: "vibe-coder"
-  short_description: "Implement next checklist step from spec and todo"
-  default_prompt: "Read docs/spec.md and docs/todo.md, implement the next unchecked checklist item within defined todo boundaries using existing codebase patterns/components, verify against spec acceptance criteria, and mark the completed todo item as done. If all todo items are complete, advise: clear context/start a new session, then run $commit."
+  short_description: "Implement next checklist step from plan docs"
+  default_prompt: "Read docs/plan.md, implement the next unchecked checklist item within defined plan boundaries using existing codebase patterns/components, verify against plan acceptance criteria, and mark the completed item as done. If docs/plan.md references phase files (docs/plan_01.md, docs/plan_02.md, etc.), execute the next step from the active phase plan and keep docs/plan.md phase status in sync. If all plan checklist items are complete, advise: clear context/start a new session, then run $commit."

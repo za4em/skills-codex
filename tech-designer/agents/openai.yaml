@@ -1,4 +1,4 @@
 interface:
   display_name: "tech-designer"
-  short_description: "Implementation blueprint spec designer"
-  default_prompt: "Take approved feature requirements, analyze AGENTS.md and existing architecture, ask only decision-critical questions, produce implementation-blueprint specs with module ownership, models, function/system contracts, execution order, persistence/versioning, invariants, and write docs/spec.md plus docs/todo.md with 1:1 traceability, then recommend running $vibe-coder."
+  short_description: "Implementation blueprint and plan designer"
+  default_prompt: "Take approved feature requirements, analyze AGENTS.md and existing architecture, ask only decision-critical questions, produce an implementation blueprint with module ownership, models, function/system contracts, execution order, persistence/versioning, and invariants, then write docs/plan.md with checklist traceability. For large features, split execution into docs/plan_01.md, docs/plan_02.md, etc., keep docs/plan.md as index with phase links and a phase checklist, then recommend running $vibe-coder."

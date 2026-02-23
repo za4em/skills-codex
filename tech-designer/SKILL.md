@@ -1,6 +1,6 @@
 ---
 name: tech-designer
-description: Produce implementation blueprints for existing codebases. Use when requirements are ready and the user needs a concrete technical design with module structure, data models, function/system contracts, state ownership, execution order, persistence/schema changes, invariants, and a phased todo mapped 1:1 to spec sections.
+description: Produce implementation blueprints for existing codebases. Use when requirements are ready and the user needs a concrete technical design with module structure, data models, function/system contracts, state ownership, execution order, persistence/schema changes, invariants, and an execution checklist in `docs/plan.md` (with optional phased `docs/plan_XX.md` files for large features).
 ---
 
 # Tech Designer
@@ -14,17 +14,25 @@ Prioritize design precision over broad planning text. Reuse existing architectur
 ## Default Deliverables
 
 Always produce and persist:
-- `docs/spec.md` as the implementation blueprint.
-- `docs/todo.md` as a phased checklist mapped directly to blueprint sections.
+- `docs/plan.md` as the master implementation plan.
 
-If the project uses split specs (for example MVP/full), write all required spec files and keep `docs/spec.md` as index/router.
+`docs/plan.md` must include:
+- Feature overview and scope.
+- High-level technical decisions that apply globally.
+- Shared constraints, invariants, and acceptance criteria.
+- Checklist tracking execution progress.
+
+For large features with multiple phases:
+- Split detailed execution into `docs/plan_01.md`, `docs/plan_02.md`, etc.
+- Keep `docs/plan.md` as the index/router with links to each phase plan.
+- Keep a phase-level checklist in `docs/plan.md` to track overall phase status.
 
 ## Workflow
 
 1. Capture and normalize requirements.
 - Consolidate current user request and any prior handoff (for example from `$product-manager`).
 - Write a single requirement baseline with explicit assumptions.
-- Include this baseline in the final spec under Input Traceability.
+- Include this baseline in `docs/plan.md` under Input Traceability.
 
 2. Read repository constraints first.
 - Read `AGENTS.md` before designing.
@@ -43,7 +51,7 @@ If the project uses split specs (for example MVP/full), write all required spec 
 - Define ordering/scheduling and side-effect sequencing.
 - Ask questions only when the answer materially changes design.
 
-5. Write blueprint-level technical specification.
+5. Write blueprint-level technical plan.
 - Specify exact models/resources/entities and their fields.
 - Specify method/system contracts (inputs, outputs, side effects, failure paths).
 - Specify module boundaries and responsibilities.
@@ -52,15 +60,16 @@ If the project uses split specs (for example MVP/full), write all required spec 
 - Specify error handling strategy, invariants, and validation rules.
 - Specify testing strategy linked to design guarantees.
 
-6. Write implementation todo mapped to blueprint.
-- Build phases aligned with implementation order.
-- Make tasks atomic and execution-ready.
-- For every task, add traceability reference to spec subsection and file/test/checkpoint.
-- Keep todo focused on implementation work, not generic reminders.
+6. Define checklist structure.
+- For small/medium scope: keep one execution checklist directly in `docs/plan.md`.
+- For large scope: create phased plans `docs/plan_01.md`, `docs/plan_02.md`, etc.
+- In split mode, keep `docs/plan.md` focused on shared context and phase index/checklist.
+- For every task, add traceability reference to plan subsection and file/test/checkpoint.
+- Keep checklist items focused on implementation work, not generic reminders.
 
 7. Persist artifacts.
-- Write/update `docs/spec.md` (or split specs + `docs/spec.md` index when needed).
-- Write/update `docs/todo.md`.
+- Write/update `docs/plan.md`.
+- Write/update `docs/plan_XX.md` files when split mode is needed.
 - If unresolved critical decisions remain, ask targeted questions first, then finalize artifacts.
 
 8. Recommend execution handoff.
@@ -68,7 +77,7 @@ If the project uses split specs (for example MVP/full), write all required spec 
 
 ## Blueprint Requirements (Mandatory)
 
-The spec must include concrete implementation blueprint details:
+The plan must include concrete implementation blueprint details:
 - Module/file structure and ownership.
 - Data model catalog (resources/entities/config/schema structs).
 - Function/system/API/message contracts.
@@ -119,18 +128,18 @@ Use this response structure:
 1. Only if unresolved and material
 
 ### Artifact Write Status
-- `docs/spec.md`: written/updated
-- `docs/todo.md`: written/updated
+- `docs/plan.md`: written/updated
+- `docs/plan_XX.md`: written/updated when needed
 
 ### Next Step
 - Recommend: `Run $vibe-coder.`
 
-## `docs/spec.md` Blueprint Template
+## `docs/plan.md` Template
 
-Write `docs/spec.md` using this structure:
+Write `docs/plan.md` using this structure:
 
 ```md
-# Technical Specification: [Feature Name]
+# Implementation Plan: [Feature Name]
 
 ## 1. Context and Inputs
 - Original request
@@ -149,7 +158,7 @@ Write `docs/spec.md` using this structure:
 - Reusable architecture/components
 - Relevant files and extension points
 
-## 5. Technical Blueprint
+## 5. Shared Technical Blueprint
 ### 5.1 Module and Ownership Design
 - Module boundaries and responsibilities
 - Existing files to extend and new files to add
@@ -181,48 +190,48 @@ Write `docs/spec.md` using this structure:
 - Integration tests tied to cross-module flows
 - Manual verification checklist
 
-## 8. Risks and Mitigations
+## 8. High-Level Technical Decisions
+- Decision and rationale (global, cross-phase decisions only)
+
+## 9. Execution Tracking
+### 9.1 Single-file mode (small/medium feature)
+- [ ] [atomic task] (ref: plan §[section], file/test/checkpoint: [path or note])
+
+### 9.2 Split mode (large feature)
+- [ ] Phase 1: [name] -> [docs/plan_01.md](plan_01.md)
+- [ ] Phase 2: [name] -> [docs/plan_02.md](plan_02.md)
+
+## 10. Risks and Mitigations
 - Key technical risks and mitigation strategy
 
-## 9. Rollout Notes
+## 11. Rollout Notes
 - Implementation sequencing and checkpoints
 - Exit/acceptance criteria
 ```
 
-## `docs/todo.md` Template
+## `docs/plan_XX.md` Template (Split Mode)
 
-Write `docs/todo.md` using this structure:
+When split mode is used, write each phase file (for example `docs/plan_01.md`)
+using this structure:
 
 ```md
-# Implementation Todo: [Feature Name]
+# Phase Plan [NN]: [Phase Name]
 
-## Phase 1: Contracts and Foundations
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-- [ ] [atomic task] (ref: spec §[section], file: [path])
+## 1. Phase Scope and Boundaries
+- In scope for this phase
+- Out of scope for this phase
+- Dependency/entry criteria
 
-## Phase 2: Core Runtime Implementation
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-- [ ] [atomic task] (ref: spec §[section], file: [path])
+## 2. Implementation Checklist
+- [ ] [atomic task] (ref: plan §[section], file/test/checkpoint: [path or note])
+- [ ] [atomic task] (ref: plan §[section], file/test/checkpoint: [path or note])
 
-## Phase 3: Integration and State Flow
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-- [ ] [atomic task] (ref: spec §[section], file: [path])
+## 3. Verification for This Phase
+- [ ] [test task] (ref: plan §[section], test: [path])
+- [ ] [manual check] (ref: plan §[section], manual: [step])
 
-## Phase 4: Persistence and Compatibility
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-
-## Phase 5: Validation and Hardening
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-- [ ] [atomic task] (ref: spec §[section], file: [path])
-
-## Phase 6: Tests and Verification
-- [ ] [test task] (ref: spec §[section], test: [path])
-- [ ] [manual check] (ref: spec §[section], manual: [step])
-
-## Phase 7: Rollout Readiness
-- [ ] [checkpoint] (ref: spec §[section], checkpoint: [note])
-- [ ] [checkpoint] (ref: spec §[section], checkpoint: [note])
+## 4. Exit Criteria
+- Conditions required before this phase is considered complete
 ```
 
 ## Guardrails
@@ -231,5 +240,5 @@ Write `docs/todo.md` using this structure:
 - Keep design concrete enough that implementation does not require architecture guesswork.
 - Reuse existing modules and patterns before introducing new abstractions.
 - Prefer small, decoupled components and explicit contracts.
-- Keep todo entries directly traceable to spec subsections.
+- Keep checklist entries directly traceable to plan subsections.
 - End with: `Run $vibe-coder.`

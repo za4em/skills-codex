@@ -1,6 +1,6 @@
 ---
 name: vibe-coder
-description: Implement the next planned work item from project docs. Use when a user asks to execute development based on `docs/spec.md` and `docs/todo.md`, requiring code changes aligned with the approved spec, existing architecture/style/patterns, reuse of existing components, and automatic marking of completed todo checklist steps.
+description: Implement the next planned work item from project docs. Use when a user asks to execute development based on `docs/plan.md` (and optional `docs/plan_XX.md` phase files), requiring code changes aligned with the approved plan, existing architecture/style/patterns, reuse of existing components, and automatic checklist updates.
 ---
 
 # Vibe Coder
@@ -9,19 +9,26 @@ description: Implement the next planned work item from project docs. Use when a 
 
 Execute implementation incrementally from approved planning docs.
 
-Read `docs/spec.md` and `docs/todo.md`, implement the next unchecked checklist step, verify alignment with the spec and repository conventions, and mark that step done.
+Read `docs/plan.md`, implement the next unchecked checklist step, verify
+alignment with plan requirements and repository conventions, and mark that step
+done. When phased plans exist (`docs/plan_01.md`, `docs/plan_02.md`, etc.),
+execute from the active phase file while keeping `docs/plan.md` phase status
+in sync.
 
 ## Workflow
 
 1. Load planning context.
-- Read `docs/spec.md` and `docs/todo.md`.
-- If either file is missing, stop and ask the user to provide or generate it.
+- Read `docs/plan.md`.
+- If `docs/plan.md` is missing, stop and ask the user to provide or generate it.
+- Detect split mode by phase links/references to `docs/plan_XX.md` in `docs/plan.md`.
+- In split mode, read the active phase file(s) needed for the next step.
 - Extract constraints, acceptance criteria, boundaries, and explicit non-goals.
 
 2. Select the next step.
-- Find the earliest unchecked checklist item (`- [ ]`) in `docs/todo.md`.
+- Single-file mode: find the earliest unchecked checklist item (`- [ ]`) in `docs/plan.md`.
+- Split mode: find the earliest unchecked phase in `docs/plan.md`, then find the earliest unchecked checklist item in that phase file (`docs/plan_XX.md`).
 - Treat that item as the active scope.
-- Respect boundaries defined for that phase/task in `docs/todo.md`.
+- Respect boundaries defined in `docs/plan.md` and the active phase plan file (if split mode).
 - If the step is ambiguous or too large, ask clarifying questions before coding.
 
 3. Map implementation to current codebase.
@@ -35,12 +42,13 @@ Read `docs/spec.md` and `docs/todo.md`, implement the next unchecked checklist s
 - Update or add tests needed for the behavior introduced by this step.
 
 5. Verify alignment.
-- Check implemented behavior against `docs/spec.md` acceptance criteria.
+- Check implemented behavior against acceptance criteria and technical decisions in `docs/plan.md` (and active phase plan if applicable).
 - Check consistency with current codebase conventions.
 - Run focused validation commands when feasible (tests/lint/build for impacted area).
 
 6. Mark completion.
-- Update `docs/todo.md` by converting the completed item from `- [ ]` to `- [x]`.
+- Update the active plan checklist item from `- [ ]` to `- [x]`.
+- In split mode, when a phase file has no unchecked items left, mark the corresponding phase checkbox as done in `docs/plan.md`.
 - Mark only items fully completed.
 - If partially completed, keep it unchecked and note what remains.
 
@@ -50,23 +58,23 @@ Read `docs/spec.md` and `docs/todo.md`, implement the next unchecked checklist s
 - Note follow-up risks, blockers, or remaining questions.
 
 8. Recommend handoff when done.
-- If no unchecked checklist items remain in `docs/todo.md`, advise the user to clear context/start a new session and run `$commit`.
+- If no unchecked checklist items remain across `docs/plan.md` and any linked `docs/plan_XX.md` files, advise the user to clear context/start a new session and run `$commit`.
 
 ## Output Format
 
 Use this structure after each execution cycle.
 
-### Active Todo Step
-- [copied checklist item from `docs/todo.md`]
+### Active Plan Step
+- [copied checklist item from active plan file]
 
 ### Implementation Summary
 - [what changed]
 
-### Spec Alignment
-- [how the change satisfies spec requirements]
+### Plan Alignment
+- [how the change satisfies plan requirements]
 
-### Todo Boundary Alignment
-- [how implementation stayed inside defined in-scope/out-of-scope boundaries]
+### Plan Boundary Alignment
+- [how implementation stayed inside defined boundaries]
 
 ### Codebase Alignment
 - [how existing patterns/components were reused]
@@ -74,20 +82,20 @@ Use this structure after each execution cycle.
 ### Validation
 - [tests/lint/build commands run and outcomes]
 
-### Todo Update
-- [state whether the step was marked `- [x]` in `docs/todo.md`]
+### Plan Update
+- [state whether the step was marked `- [x]` in the active plan file]
+- [if split mode: state whether phase status was updated in `docs/plan.md`]
 
 ### Next Item
 - [next unchecked checklist item, if any]
 
-### Final Handoff (When Todo Complete)
+### Final Handoff (When Plan Is Complete)
 - [if all items are complete: `Clear context/start a new session, then run $commit.`]
 
 ## Guardrails
 
 - Do not implement multiple checklist items in one pass unless the user explicitly requests batching.
 - Do not mark a step done if acceptance criteria are not met.
-- Do not drift beyond `docs/spec.md` scope or `docs/todo.md` boundaries without user approval.
+- Do not drift beyond `docs/plan.md` scope and active plan boundaries without user approval.
 - Prefer minimal, targeted changes over broad refactors.
 - Prefer existing components and established repository approaches before creating new ones.
-- When all checklist items are complete, end with: `Clear context/start a new session, then run $commit.`

@@ -1,13 +1,13 @@
 ---
 name: product-manager
-description: Product discovery and requirement refinement for existing products in large projects. Use when the user shares a feature idea/prompt and needs product-manager style clarification (no technical design), feature-specific questioning, gap and edge-case discovery, and a lean finalized implementation brief to hand off to `$tech-designer`.
+description: Product discovery and requirement refinement. Use when the user shares a feature idea/prompt and needs clarification (no technical design), feature-specific questioning, gap and edge-case discovery, and a lean finalized implementation brief to hand off to `$tech-designer`.
 ---
 
 # Product Manager
 
 ## Overview
 
-Turn rough feature ideas into execution-ready product requirements for an existing product.
+Turn rough feature ideas into execution-ready product requirements.
 
 Focus on behavior clarity, decision-ready scope, and finding holes in the prompt.
 Do not include technical design, architecture, or code-level implementation details.
@@ -77,7 +77,6 @@ Use this response structure:
 - Ask only questions that can change how the feature behaves.
 - Avoid organization/process questions unless they directly affect feature behavior or scope.
 - Prefer questions that resolve one concrete decision each.
-- Cover both happy path and at least one critical edge case.
 
 ## Guardrails
 

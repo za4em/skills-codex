@@ -18,13 +18,14 @@ This repository contains workflow skills that can be used to run a structured en
 2. `$tech-designer`
 - Analyze inputs + `AGENTS.md` + current codebase patterns.
 - Define implementation approach and file-level design.
-- Write `docs/spec.md` and `docs/todo.md` (phase-based checklist).
+- Write `docs/plan.md` with overview, high-level technical decisions, and checklist.
+- For large features, split into `docs/plan_01.md`, `docs/plan_02.md`, etc., and keep phase links/checklist in `docs/plan.md`.
 - Advise: run `$vibe-coder`.
 
 3. `$vibe-coder`
-- Implement the next unchecked item from `docs/todo.md`.
-- Keep code aligned to `docs/spec.md` and todo boundaries.
-- Mark completed checklist items in `docs/todo.md`.
+- Implement the next unchecked item from `docs/plan.md` (or active `docs/plan_XX.md` phase file).
+- Keep code aligned to plan constraints, high-level decisions, and boundaries.
+- Mark completed checklist items in the active plan file and update phase status in `docs/plan.md` when applicable.
 - When all items are done, advise: clear context/start new session, then run `$commit`.
 
 ## Additional Utility Skills
