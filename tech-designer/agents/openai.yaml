@@ -1,4 +1,4 @@
 interface:
   display_name: "tech-designer"
-  short_description: "Codebase-aware technical spec author"
-  default_prompt: "Take the feature requirements (from user input or previous skill handoff), analyze AGENTS.md and the existing codebase architecture/patterns/style, ask only decision-critical implementation questions, produce a full technical spec for what and how to build, write docs/spec.md, and recommend running $project-manager."
+  short_description: "Implementation blueprint spec designer"
+  default_prompt: "Take approved feature requirements, analyze AGENTS.md and existing architecture, ask only decision-critical questions, produce implementation-blueprint specs with module ownership, models, function/system contracts, execution order, persistence/versioning, invariants, and write docs/spec.md plus docs/todo.md with 1:1 traceability, then recommend running $vibe-coder."
