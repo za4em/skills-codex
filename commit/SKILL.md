@@ -27,7 +27,7 @@ Create conventional commit messages with enforced subject/body quality rules and
 
 - Use a module name like `ui`, `core`, `auth`, `data`, `app`, or a feature module name.
 - If changes span multiple modules, choose the most user-facing or highest-level module touched (for example `core` or `product`) instead of `*`.
-- When unsure, prefer the most user-facing or highest-level module touched.
+- When unsure, prefer the most user-facing or highest-level module touched. For types like  `build`, `docs`, `chore`, `ci` can be ommited.
 
 ## Quality rules
 
@@ -45,6 +45,7 @@ Good:
 - `fix(auth): resolve token refresh race condition on logout`
 - `refactor(ui): simplify line chart drawing and improve performance`
 - `build: update app_version to 2.3`
+- `docs: add payment module description and file structure`
 
 Bad:
 - `Claude fixed this`
