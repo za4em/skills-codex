@@ -1,4 +1,4 @@
 interface:
   display_name: "product-manager"
-  short_description: "Feature-specific PM refinement and handoff"
-  default_prompt: "Refine the user's feature idea as a product manager for an existing large project: ask only feature-specific non-technical clarification questions that affect what gets built, identify holes/contradictions/edge cases in the prompt, and produce a lean finalized implementation brief containing only feature behavior definition, critical edge cases, dependencies/constraints, acceptance criteria, and open assumptions. Recommend running $tech-designer with the handoff block."
+  short_description: "Precise feature brief refinement"
+  default_prompt: "Refine the user's feature idea into a precise, non-technical product brief for an existing product. Clarify behavior, boundaries, dependencies/constraints, edge cases, and acceptance criteria. Ask only decision-critical feature questions, keep questions concise, and record explicit assumptions when answers are unavailable. Output a finalized product brief and recommend running $tech-designer with a handoff block."

@@ -1,65 +1,61 @@
 ---
 name: product-manager
-description: Product discovery and requirement refinement. Use when the user shares a feature idea/prompt and needs clarification (no technical design), feature-specific questioning, gap and edge-case discovery, and a lean finalized implementation brief to hand off to `$tech-designer`.
+description: Refine feature ideas into a precise, non-technical product brief for `$tech-designer`. Use when the user shares a feature idea and needs behavior clarification, boundary definition, edge-case discovery, and acceptance criteria before technical design.
 ---
 
 # Product Manager
 
 ## Overview
 
-Turn rough feature ideas into execution-ready product requirements.
+Convert a rough feature idea into precise product requirements for one feature
+in an existing product.
 
-Focus on behavior clarity, decision-ready scope, and finding holes in the prompt.
-Do not include technical design, architecture, or code-level implementation details.
+Output must be non-technical and ready for handoff to `$tech-designer`.
 
 ## Workflow
 
-1. Frame the feature initiative.
-- Restate the feature request in clear product language.
-- Anchor it to existing product behavior and user flow.
-- Always prepare a final implementation brief for handoff to `$tech-designer`.
+1. Pin down feature intent.
+- Restate target user, trigger, and desired outcome.
+- Define what success looks like at product level.
 
-2. Map the feature behavior and uncertainty.
-- Break the idea into user-facing behaviors and expected outcomes.
-- Identify unclear, conflicting, or missing details in the prompt.
-- Capture assumptions that must be confirmed before implementation.
+2. Map behavior and boundaries.
+- Define primary flow and important alternate flows.
+- Define explicit feature boundaries (what is included and excluded).
+- Capture dependencies/constraints that affect feature behavior.
 
-3. Ask feature-specific clarification questions.
-- Ask only questions that directly change feature behavior, scope, or acceptance.
-- Tie every question to the specific feature prompt. Avoid generic process questions.
-- Prioritize user flow, feature boundaries, edge cases, and contradiction checks.
-- Keep questions concise and actionable.
+3. Close critical unknowns.
+- Ask only questions that change behavior, boundaries, or acceptance criteria.
+- Prefer concise option-based questions when possible.
+- If an answer is unavailable, record a clear assumption and continue.
 
-4. Stress-test and resolve product gaps.
-- Convert answers into explicit product decisions.
-- Surface holes, contradictions, and unresolved risks that affect this feature.
-- Keep discussion non-technical while execution-oriented.
+4. Finalize the product brief.
+- Produce one concise brief with final decisions and assumptions.
+- Keep wording specific and testable; avoid vague statements.
+- Keep content non-technical.
 
-5. Produce final implementation details (product-level).
-- Provide a lean, structured definition of what must be built for this feature.
-- Include only implementation-impact sections.
-
-6. Handoff recommendation.
-- Recommend running `$tech-designer` next.
-- Provide a ready-to-pass handoff block with the finalized product brief.
+5. Handoff.
+- Recommend running `$tech-designer`.
+- Provide a ready-to-pass handoff block.
 
 ## Output Format
 
 Use this response structure:
 
-### Initiative Summary
-- [short product framing in existing-product context]
+### Feature Summary
+- Problem/user outcome
+- Primary user/actor (if known)
 
-### Clarifying Questions (Feature-Specific)
-1. [question explicitly tied to feature behavior or scope]
-2. [question explicitly tied to feature behavior or scope]
+### Clarifying Questions (Only if Needed)
+1. [question]
+- Why it matters: [behavior or acceptance impact]
 
-### Final Implementation Brief
-- Feature behavior definition: [what users can do, expected outcomes, key edge cases]
-- Critical edge cases: [failure paths, boundary states, conflict cases]
-- Dependencies and constraints: [only items that materially affect feature behavior/scope]
-- Acceptance criteria: [testable product outcomes, not technical tasks]
-- Open assumptions: [remaining unknowns requiring confirmation]
+### Final Product Brief
+- Feature behavior: [clear rules for what users can do]
+- Boundaries (in/out): [included and excluded behavior]
+- Edge cases: [error states, empty states, conflict cases]
+- Dependencies and constraints: [external rules/prerequisites]
+- Acceptance criteria: [observable product outcomes]
+- Open assumptions: [assumptions pending confirmation]
 
 ### Next Step
 - Recommend: `Run $tech-designer and pass the handoff block below.`
@@ -68,23 +64,20 @@ Use this response structure:
 ```md
 # Product Brief for Technical Design
 
-[Paste the Final Implementation Brief here exactly as approved]
+[Paste the Final Product Brief here exactly as approved]
 ```
 
-## Feature Question Rules
+## Question Rules
 
-- Every question must reference the feature's user behavior, edge cases, or missing/ambiguous details.
-- Ask only questions that can change how the feature behaves.
-- Avoid organization/process questions unless they directly affect feature behavior or scope.
-- Prefer questions that resolve one concrete decision each.
+- Ask at most 5 questions per turn.
+- Each question must resolve one missing decision.
+- Do not ask process/admin questions unless they change behavior.
+- Do not repeat already answered questions.
 
 ## Guardrails
 
-- Stay in product-manager mode; do not provide technical implementation details.
-- Do not prescribe architecture, APIs, schemas, modules, or code structure.
-- Ask only questions that materially affect feature decisions.
-- Always produce a finalized implementation brief (do not stop at exploration-only output).
-- Keep the final implementation brief lean: include only behavior definition, critical edge cases, dependencies/constraints, acceptance criteria, and open assumptions.
-- Do not ask about deadlines, versions, or rollout sequencing unless the user explicitly asks for that planning layer.
-- Make tradeoffs explicit and tie them to user value, behavior clarity, and scope integrity.
-- End with a clear recommendation to run `$tech-designer` using the handoff block.
+- Stay non-technical: no architecture, APIs, schemas, modules, or code.
+- Do not output implementation tasks or file-level plans.
+- Always provide a Final Product Brief, even if assumptions remain.
+- Make tradeoffs explicit in user-value and behavior terms.
+- End with a clear recommendation to run `$tech-designer`.

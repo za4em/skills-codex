@@ -1,15 +1,14 @@
 ---
 name: tech-designer
-description: Produce implementation blueprints for existing codebases. Use when requirements are ready and the user needs a concrete technical design with module structure, data models, function/system contracts, state ownership, execution order, persistence/schema changes, invariants, and an execution checklist in `docs/plan.md` (with optional phased `docs/plan_XX.md` files for large features).
+description: Produce implementation plans for existing codebases. Use when requirements are ready and the user needs a concrete technical design with models/entities, method/system contracts, module boundaries, and an execution checklist in `docs/plan.md` (with optional phased `docs/plan_XX.md` files for large features).
 ---
 
 # Tech Designer
 
 ## Overview
 
-Convert approved requirements into an implementation blueprint that another engineer can implement without guessing architecture, ownership, or contracts.
-
-Prioritize design precision over broad planning text. Reuse existing architecture and patterns before adding new abstractions.
+Turn approved requirements into an implementation plan that can be executed
+without architecture guesswork.
 
 ## Default Deliverables
 
@@ -19,7 +18,7 @@ Always produce and persist:
 `docs/plan.md` must include:
 - Feature overview.
 - High-level technical decisions that apply globally.
-- Shared constraints, invariants, and acceptance criteria.
+- Shared constraints and acceptance criteria.
 - Checklist tracking execution progress.
 
 For large features with multiple phases:
@@ -29,103 +28,67 @@ For large features with multiple phases:
 
 ## Workflow
 
-1. Capture and normalize requirements.
-- Consolidate current user request and any prior handoff (for example from `$product-manager`).
-- Write a single requirement baseline with explicit assumptions.
-- Include this baseline in `docs/plan.md` under Input Traceability.
+1. Normalize input.
+- Merge the current request and any prior handoff into one requirement baseline.
+- Record assumptions explicitly.
 
-2. Read repository constraints first.
-- Read `AGENTS.md` before designing.
-- Extract binding rules: architecture constraints, style constraints, workflow constraints.
-- Treat repository-local policies as non-optional.
+2. Load constraints and codebase context.
+- Read `AGENTS.md` first and treat it as binding policy.
+- Scan only relevant modules and list reuse targets + likely touched files.
 
-3. Analyze current codebase and identify reuse targets.
-- Read only relevant entry points/modules.
-- Identify existing resources, models, messages/events, schedules, persistence boundaries, and error types.
-- Map concrete files that should be extended vs newly created.
-
-4. Make key technical decisions.
-- Choose module ownership boundaries and integration direction.
-- Define runtime state ownership and invariants.
-- Define contract style (functions, systems, events/messages, service methods).
-- Define ordering/scheduling and side-effect sequencing.
-- Ask questions only when the answer materially changes design.
-
-5. Write blueprint-level technical plan.
+3. Define the technical blueprint.
 - Specify exact models/resources/entities and their fields.
 - Specify method/system contracts (inputs, outputs, side effects, failure paths).
 - Specify module boundaries and responsibilities.
-- Specify state/control/data flow, including transitions.
-- Specify persistence schema changes and version behavior.
-- Specify error handling strategy, invariants, and validation rules.
-- Specify testing strategy linked to design guarantees.
 
-6. Define checklist structure.
-- For small/medium features: keep one execution checklist directly in `docs/plan.md`.
-- For large features: create phased plans `docs/plan_01.md`, `docs/plan_02.md`, etc.
-- In split mode, keep `docs/plan.md` focused on shared context and phase index/checklist.
-- For every task, add traceability reference to plan subsection and file/test/checkpoint.
-- Keep checklist items focused on implementation work, not generic reminders.
+4. Write plan artifacts.
+- Always write/update `docs/plan.md`.
+- For large features, split execution into `docs/plan_01.md`, `docs/plan_02.md`, etc.
+- Keep checklist items atomic and traceable to files/tests.
 
-7. Persist artifacts.
-- Write/update `docs/plan.md`.
-- Write/update `docs/plan_XX.md` files when split mode is needed.
-- If unresolved critical decisions remain, ask targeted questions first, then finalize artifacts.
-
-8. Recommend execution handoff.
-- End by recommending: `Run $vibe-coder.`
+5. Handoff.
+- If critical decisions are unresolved, ask targeted questions before finalizing.
+- End with: `Run $vibe-coder.`
 
 ## Plan Requirements (Mandatory)
 
-Keep plans practical and execution-ready.
+Every plan must include:
+- Goal
+- Files/modules to change
+- Key technical decisions
+- Execution checklist (atomic tasks in `docs/plan.md` or `docs/plan_XX.md`)
+- Validation and acceptance criteria
+- Risks or open questions
 
-Every plan must define:
-- What is being built.
-- Which files/modules are expected to change.
-- Key technical decisions that affect implementation.
-- A checklist of atomic tasks that can be checked off.
-- Validation steps and acceptance criteria.
-- Known risks, blockers, or unresolved questions.
-
-Avoid "clever" structure or abstract prose. Prefer short, direct language.
+Use short, direct language.
 
 ## Question Rules
 
-Ask only questions that change design decisions such as:
-- module ownership,
-- contract shape,
-- state transition policy,
-- persistence compatibility policy,
-- user-control vs automatic behavior.
-
-Prefer concise option-based questions with a recommended option first.
+Ask only questions that materially change models/entities, contracts, or module
+boundaries. Prefer concise option-based questions.
 
 ## Output Format
 
 Use this response structure:
 
-### Requirement Intake
-- Consolidated baseline requirements
+### Requirement Baseline
+- Final requirement summary
 - Explicit assumptions
 
 ### AGENTS.md Constraints
-- Binding constraints that shape implementation
+- Rules that affect design
 
 ### Codebase Analysis
-- Existing architecture and reusable modules
-- Key extension points and target files
+- Reuse targets and files likely to change
 
-### Technical Blueprint
-- Architecture and module ownership
-- Data model and schema design
-- Contract definitions (functions/systems/messages/APIs)
-- Execution order and state transitions
-- Persistence/versioning strategy
-- Error handling and invariants
-- Test strategy tied to guarantees
+### Technical Plan
+- Models/entities and fields
+- Contracts (inputs, outputs, side effects, failure paths)
+- Module boundaries and responsibilities
+- Validation approach
 
 ### Open Technical Questions
-1. Only if unresolved and material
+- Only unresolved, material blockers
 
 ### Artifact Write Status
 - `docs/plan.md`: written/updated
@@ -146,13 +109,19 @@ Use one of these two formats based on feature size.
 ## Goal
 - What we are building and why.
 
+## Constraints
+- Constraints that affect implementation.
+
 ## Files and Modules
 - Existing files to update
 - New files to add (if any)
 
-## Key Technical Decisions
+## Technical Decisions
 - Decision: [what]
 - Why: [reason/tradeoff]
+
+## Dependencies
+- Prerequisites required before implementation starts.
 
 ## Checklist
 - [ ] [atomic task] (file: [path], ref: [section])
@@ -174,20 +143,24 @@ Use one of these two formats based on feature size.
 ## Goal
 - What we are building and why.
 
-## Shared Constraints
-- Global constraints that apply to all phases.
+## Constraints
+- Constraints that apply across all phases.
 
-## Shared Technical Decisions
+## Files and Modules
+- Shared files/modules expected to change across phases.
+- Note: phase-specific file changes live in each `docs/plan_XX.md`.
+
+## Technical Decisions
 - Cross-phase decisions that apply to all phases.
 
 ## Phase Index
 - [ ] Phase 01: [name] -> [docs/plan_01.md](plan_01.md)
 - [ ] Phase 02: [name] -> [docs/plan_02.md](plan_02.md)
 
-## Global Validation
+## Validation
 - [ ] [end-to-end checks spanning phases]
 
-## Global Risks / Open Questions
+## Risks / Open Questions
 - [cross-phase risks or blockers]
 ```
 
@@ -204,6 +177,12 @@ When split mode is used, write each phase file (for example
 
 ## Dependencies
 - Dependencies/entry criteria
+
+## Files and Modules
+- Files/modules expected to change in this phase.
+
+## Technical Decisions
+- Phase-specific decisions and rationale.
 
 ## Implementation Checklist
 - [ ] [atomic task] (file: [path], ref: [section])
