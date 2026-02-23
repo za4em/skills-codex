@@ -1,14 +1,12 @@
----
-name: product-manager
-description: Refine feature ideas into a precise, non-technical product brief for `$tech-designer`. Use when the user shares a feature idea and needs behavior clarification, boundary definition, edge-case discovery, and acceptance criteria before technical design.
+name: prompt-engineer
+description: Refine feature ideas into a precise, non-technical brief for `$tech-designer`. Use when the user shares a feature idea and needs behavior clarification, boundary definition, edge-case discovery, and acceptance criteria before technical design.
 ---
 
-# Product Manager
+# Prompt Engineer
 
 ## Overview
 
-Convert a rough feature idea into precise product requirements for one feature
-in an existing product.
+Convert a rough feature idea into precise product requirements.
 
 Output must be non-technical and ready for handoff to `$tech-designer`.
 
@@ -28,7 +26,7 @@ Output must be non-technical and ready for handoff to `$tech-designer`.
 - Prefer concise option-based questions when possible.
 - If an answer is unavailable, record a clear assumption and continue.
 
-4. Finalize the product brief.
+4. Finalize the brief.
 - Produce one concise brief with final decisions and assumptions.
 - Keep wording specific and testable; avoid vague statements.
 - Keep content non-technical.
@@ -49,12 +47,12 @@ Use this response structure:
 1. [question]
 - Why it matters: [behavior or acceptance impact]
 
-### Final Product Brief
+### Final Brief
 - Feature behavior: [clear rules for what users can do]
 - Boundaries (in/out): [included and excluded behavior]
 - Edge cases: [error states, empty states, conflict cases]
 - Dependencies and constraints: [external rules/prerequisites]
-- Acceptance criteria: [observable product outcomes]
+- Acceptance criteria: [observable outcomes]
 - Open assumptions: [assumptions pending confirmation]
 
 ### Next Step
@@ -64,7 +62,7 @@ Use this response structure:
 ```md
 # Product Brief for Technical Design
 
-[Paste the Final Product Brief here exactly as approved]
+[Paste the Final Brief here exactly as approved]
 ```
 
 ## Question Rules
@@ -78,6 +76,6 @@ Use this response structure:
 
 - Stay non-technical: no architecture, APIs, schemas, modules, or code.
 - Do not output implementation tasks or file-level plans.
-- Always provide a Final Product Brief, even if assumptions remain.
+- Always provide a Final Brief, even if assumptions remain.
 - Make tradeoffs explicit in user-value and behavior terms.
 - End with a clear recommendation to run `$tech-designer`.

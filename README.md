@@ -4,7 +4,7 @@ This repository contains workflow skills that can be used to run a structured en
 
 ## Recommended Flow
 
-1. `$product-manager`
+1. `$prompt-engineer`
 - Refine a feature idea from a product perspective without technical design.
 - Ask only feature-specific clarification questions that affect behavior.
 - Produce a lean finalized brief:
@@ -44,7 +44,7 @@ This repository contains workflow skills that can be used to run a structured en
 
 ## Skills Included
 
-- `product-manager`
+- `prompt-engineer`
 - `tech-designer`
 - `vibe-coder`
 - `commit`
