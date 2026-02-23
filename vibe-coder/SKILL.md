@@ -57,9 +57,6 @@ in sync.
 - List updated files and validations run.
 - Note follow-up risks, blockers, or remaining questions.
 
-8. Recommend handoff when done.
-- If no unchecked checklist items remain across `docs/plan.md` and any linked `docs/plan_XX.md` files, advise the user to clear context/start a new session and run `$commit`.
-
 ## Output Format
 
 Use this structure after each execution cycle.

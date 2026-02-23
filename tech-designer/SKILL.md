@@ -17,7 +17,7 @@ Always produce and persist:
 - `docs/plan.md` as the master implementation plan.
 
 `docs/plan.md` must include:
-- Feature overview and scope.
+- Feature overview.
 - High-level technical decisions that apply globally.
 - Shared constraints, invariants, and acceptance criteria.
 - Checklist tracking execution progress.
@@ -61,8 +61,8 @@ For large features with multiple phases:
 - Specify testing strategy linked to design guarantees.
 
 6. Define checklist structure.
-- For small/medium scope: keep one execution checklist directly in `docs/plan.md`.
-- For large scope: create phased plans `docs/plan_01.md`, `docs/plan_02.md`, etc.
+- For small/medium features: keep one execution checklist directly in `docs/plan.md`.
+- For large features: create phased plans `docs/plan_01.md`, `docs/plan_02.md`, etc.
 - In split mode, keep `docs/plan.md` focused on shared context and phase index/checklist.
 - For every task, add traceability reference to plan subsection and file/test/checkpoint.
 - Keep checklist items focused on implementation work, not generic reminders.
@@ -75,19 +75,19 @@ For large features with multiple phases:
 8. Recommend execution handoff.
 - End by recommending: `Run $vibe-coder.`
 
-## Blueprint Requirements (Mandatory)
+## Plan Requirements (Mandatory)
 
-The plan must include concrete implementation blueprint details:
-- Module/file structure and ownership.
-- Data model catalog (resources/entities/config/schema structs).
-- Function/system/API/message contracts.
-- Deterministic ordering (schedule/system sequence) where relevant.
-- Persistence mapping and schema versioning behavior.
-- Invariants and validation rules.
-- Failure behavior and recovery expectations.
-- Acceptance criteria and tests that prove the design.
+Keep plans practical and execution-ready.
 
-Avoid vague language like "add support" without describing where and how.
+Every plan must define:
+- What is being built.
+- Which files/modules are expected to change.
+- Key technical decisions that affect implementation.
+- A checklist of atomic tasks that can be checked off.
+- Validation steps and acceptance criteria.
+- Known risks, blockers, or unresolved questions.
+
+Avoid "clever" structure or abstract prose. Prefer short, direct language.
 
 ## Question Rules
 
@@ -136,102 +136,85 @@ Use this response structure:
 
 ## `docs/plan.md` Template
 
-Write `docs/plan.md` using this structure:
+Use one of these two formats based on feature size.
+
+### Single-file mode (small/medium feature)
 
 ```md
 # Implementation Plan: [Feature Name]
 
-## 1. Context and Inputs
-- Original request
-- Prior handoff input (if any)
-- Assumptions
-- Input Traceability (decision -> source requirement)
+## Goal
+- What we are building and why.
 
-## 2. Goals and Scope
-- In scope
-- Out of scope
+## Files and Modules
+- Existing files to update
+- New files to add (if any)
 
-## 3. Repository Constraints
-- AGENTS.md and repository constraints that affect implementation
+## Key Technical Decisions
+- Decision: [what]
+- Why: [reason/tradeoff]
 
-## 4. Existing Codebase Findings
-- Reusable architecture/components
-- Relevant files and extension points
+## Checklist
+- [ ] [atomic task] (file: [path], ref: [section])
+- [ ] [atomic task] (file: [path], ref: [section])
 
-## 5. Shared Technical Blueprint
-### 5.1 Module and Ownership Design
-- Module boundaries and responsibilities
-- Existing files to extend and new files to add
+## Validation
+- [ ] [test or lint command]
+- [ ] [manual verification]
 
-### 5.2 Data Models and Schema
-- Runtime resources/entities/value objects with fields
-- Config/schema structs and validation rules
+## Risks / Open Questions
+- [risk, blocker, or unresolved decision]
+```
 
-### 5.3 Contract Design
-- Function/system signatures (or equivalent contracts)
-- Message/event/API payloads and semantics
-- Side effects and failure return paths
+### Split mode (large feature)
 
-### 5.4 Execution and State Flow
-- Deterministic ordering/scheduling
-- State transitions and lifecycle rules
-- Data/control flow between modules
+```md
+# Implementation Plan: [Feature Name]
 
-### 5.5 Persistence and Compatibility
-- Save/load model mapping
-- Schema version behavior and compatibility policy
+## Goal
+- What we are building and why.
 
-## 6. Error Handling and Invariants
-- Failure scenarios and expected handling
-- Invariants that must always hold
+## Shared Constraints
+- Global constraints that apply to all phases.
 
-## 7. Testing and Verification
-- Unit tests tied to contracts and invariants
-- Integration tests tied to cross-module flows
-- Manual verification checklist
+## Shared Technical Decisions
+- Cross-phase decisions that apply to all phases.
 
-## 8. High-Level Technical Decisions
-- Decision and rationale (global, cross-phase decisions only)
+## Phase Index
+- [ ] Phase 01: [name] -> [docs/plan_01.md](plan_01.md)
+- [ ] Phase 02: [name] -> [docs/plan_02.md](plan_02.md)
 
-## 9. Execution Tracking
-### 9.1 Single-file mode (small/medium feature)
-- [ ] [atomic task] (ref: plan §[section], file/test/checkpoint: [path or note])
+## Global Validation
+- [ ] [end-to-end checks spanning phases]
 
-### 9.2 Split mode (large feature)
-- [ ] Phase 1: [name] -> [docs/plan_01.md](plan_01.md)
-- [ ] Phase 2: [name] -> [docs/plan_02.md](plan_02.md)
-
-## 10. Risks and Mitigations
-- Key technical risks and mitigation strategy
-
-## 11. Rollout Notes
-- Implementation sequencing and checkpoints
-- Exit/acceptance criteria
+## Global Risks / Open Questions
+- [cross-phase risks or blockers]
 ```
 
 ## `docs/plan_XX.md` Template (Split Mode)
 
-When split mode is used, write each phase file (for example `docs/plan_01.md`)
-using this structure:
+When split mode is used, write each phase file (for example
+`docs/plan_01.md`) using this structure:
 
 ```md
 # Phase Plan [NN]: [Phase Name]
 
-## 1. Phase Scope and Boundaries
-- In scope for this phase
-- Out of scope for this phase
-- Dependency/entry criteria
+## Phase Goal
+- What this phase delivers.
 
-## 2. Implementation Checklist
-- [ ] [atomic task] (ref: plan §[section], file/test/checkpoint: [path or note])
-- [ ] [atomic task] (ref: plan §[section], file/test/checkpoint: [path or note])
+## Dependencies
+- Dependencies/entry criteria
 
-## 3. Verification for This Phase
-- [ ] [test task] (ref: plan §[section], test: [path])
-- [ ] [manual check] (ref: plan §[section], manual: [step])
+## Implementation Checklist
+- [ ] [atomic task] (file: [path], ref: [section])
+- [ ] [atomic task] (file: [path], ref: [section])
 
-## 4. Exit Criteria
-- Conditions required before this phase is considered complete
+## Validation
+- [ ] [test command or test task]
+- [ ] [manual check]
+
+## Done When
+- Conditions required before this phase is complete
 ```
 
 ## Guardrails
@@ -241,4 +224,5 @@ using this structure:
 - Reuse existing modules and patterns before introducing new abstractions.
 - Prefer small, decoupled components and explicit contracts.
 - Keep checklist entries directly traceable to plan subsections.
+- Keep templates simple and useful; remove sections that do not drive execution.
 - End with: `Run $vibe-coder.`
