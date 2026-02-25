@@ -1,6 +1,6 @@
 ---
 name: plan-designer
-description: Produce implementation plans for existing codebases. Use when requirements are ready and the user needs a concrete technical design with models/entities, method/system contracts, module boundaries, and an execution checklist in `docs/plan.md` (with optional phased `docs/plan_XX.md` files for large features).
+description: Produce conceptual implementation plans for existing codebases. Use when requirements are ready and the user needs a high-level technical design with modules, important models/functions, key decisions, and an execution checklist in `docs/plan.md` (with optional phased `docs/plan_XX.md` files for large features).
 ---
 
 # Plan Designer
@@ -8,7 +8,7 @@ description: Produce implementation plans for existing codebases. Use when requi
 ## Overview
 
 Turn approved requirements into an implementation plan that can be executed
-without architecture guesswork.
+without architecture guesswork while staying implementation-agnostic.
 
 ## Default Deliverables
 
@@ -20,6 +20,7 @@ Always produce and persist:
 - High-level technical decisions that apply globally.
 - Shared constraints and acceptance criteria.
 - Checklist tracking execution progress.
+- A note that implementation details can change based on better findings during execution.
 
 For large features with multiple phases:
 - Split detailed execution into `docs/plan_01.md`, `docs/plan_02.md`, etc.
@@ -34,17 +35,19 @@ For large features with multiple phases:
 
 2. Load constraints and codebase context.
 - Read `AGENTS.md` first and treat it as binding policy.
-- Scan only relevant modules and list reuse targets + likely touched files.
+- Scan only relevant areas and list reuse targets at the module/pattern level.
 
 3. Define the technical blueprint.
-- Specify exact models/resources/entities and their fields.
-- Specify method/system contracts (inputs, outputs, side effects, failure paths).
+- Specify important models/entities and their responsibilities.
+- Specify high-level function/system responsibilities and expected behavior.
 - Specify module boundaries and responsibilities.
+- Do not prescribe concrete file paths, exact class signatures, or low-level implementation details.
 
 4. Write plan artifacts.
 - Always write/update `docs/plan.md`.
 - For large features, split execution into `docs/plan_01.md`, `docs/plan_02.md`, etc.
-- Keep checklist items atomic and traceable to files/tests.
+- Keep checklist items atomic and traceable to conceptual modules/capabilities.
+- Mark all proposed design details as provisional and adjustable when better implementation decisions are discovered.
 
 5. Handoff.
 - If critical decisions are unresolved, ask targeted questions before finalizing.
@@ -54,7 +57,7 @@ For large features with multiple phases:
 
 Every plan must include:
 - Goal
-- Files/modules to change
+- Modules/capabilities to evolve
 - Key technical decisions
 - Execution checklist (atomic tasks in `docs/plan.md` or `docs/plan_XX.md`)
 - Validation and acceptance criteria
@@ -79,13 +82,14 @@ Use this response structure:
 - Rules that affect design
 
 ### Codebase Analysis
-- Reuse targets and files likely to change
+- Reuse targets and relevant module/pattern areas
 
 ### Technical Plan
-- Models/entities and fields
-- Contracts (inputs, outputs, side effects, failure paths)
+- Conceptual models/entities and responsibilities
+- High-level functions/contracts and expected behavior
 - Module boundaries and responsibilities
 - Validation approach
+- Adaptability note (which decisions are provisional and can change)
 
 ### Open Technical Questions
 - Only unresolved, material blockers
@@ -111,21 +115,28 @@ Use one of these two formats based on feature size.
 
 ## Constraints
 - Constraints that affect implementation.
+- All design details in this plan are provisional and may be revised in place if better decisions are found during implementation.
 
-## Files and Modules
-- Existing files to update
-- New files to add (if any)
+## Modules and Capabilities
+- Existing modules/capabilities to extend
+- New modules/capabilities to introduce (if any)
 
 ## Technical Decisions
 - Decision: [what]
 - Why: [reason/tradeoff]
 
+## Conceptual Design
+- Key models/entities: [name + responsibility only]
+- Key functions/services: [name + responsibility only]
+- Module boundaries: [high-level ownership and interactions]
+
 ## Dependencies
 - Prerequisites required before implementation starts.
 
 ## Checklist
-- [ ] [atomic task] (file: [path], ref: [section])
-- [ ] [atomic task] (file: [path], ref: [section])
+- [ ] Define/update conceptual model/module decisions for [capability].
+- [ ] Validate approach against constraints and acceptance criteria.
+- [ ] Capture implementation readiness notes for the next execution step.
 
 ## Validation
 - [ ] [test or lint command]
@@ -145,10 +156,11 @@ Use one of these two formats based on feature size.
 
 ## Constraints
 - Constraints that apply across all phases.
+- All design details in this plan are provisional and may be revised in place if better decisions are found during implementation.
 
-## Files and Modules
-- Shared files/modules expected to change across phases.
-- Note: phase-specific file changes live in each `docs/plan_XX.md`.
+## Modules and Capabilities
+- Shared modules/capabilities expected to evolve across phases.
+- Note: phase-specific conceptual design lives in each `docs/plan_XX.md`.
 
 ## Technical Decisions
 - Cross-phase decisions that apply to all phases.
@@ -178,15 +190,21 @@ When split mode is used, write each phase file (for example
 ## Dependencies
 - Dependencies/entry criteria
 
-## Files and Modules
-- Files/modules expected to change in this phase.
+## Modules and Capabilities
+- Modules/capabilities expected to evolve in this phase.
 
 ## Technical Decisions
 - Phase-specific decisions and rationale.
 
+## Conceptual Design
+- Key models/entities: [name + responsibility only]
+- Key functions/services: [name + responsibility only]
+- Module boundaries: [high-level ownership and interactions]
+
 ## Implementation Checklist
-- [ ] [atomic task] (file: [path], ref: [section])
-- [ ] [atomic task] (file: [path], ref: [section])
+- [ ] Define/update conceptual model/module decisions for this phase.
+- [ ] Validate phase approach against constraints and done conditions.
+- [ ] Capture phase readiness notes for implementation.
 
 ## Validation
 - [ ] [test command or test task]
@@ -199,9 +217,10 @@ When split mode is used, write each phase file (for example
 ## Guardrails
 
 - Do not implement production code in this skill; produce design artifacts only.
-- Keep design concrete enough that implementation does not require architecture guesswork.
+- Keep design high-level and conceptual; avoid concrete file paths and low-level implementation details.
 - Reuse existing modules and patterns before introducing new abstractions.
 - Prefer small, decoupled components and explicit contracts.
-- Keep checklist entries directly traceable to plan subsections.
+- State clearly that any plan detail can be changed in place when a better technical decision is found.
+- Keep checklist entries directly traceable to conceptual plan subsections.
 - Keep templates simple and useful; remove sections that do not drive execution.
 - End with: `Run $vibe-coder.`
