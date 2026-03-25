@@ -1,4 +1,0 @@
-interface:
-  display_name: "vibe-coder"
-  short_description: "Implement next plan checklist item"
-  default_prompt: "Read docs/plan.md and implement exactly one next unchecked checklist item within plan boundaries using existing codebase patterns. If docs/plan.md references phase files (docs/plan_01.md, docs/plan_02.md, etc.), pick the next unchecked phase and implement the next unchecked item there. Run focused validation, update checklist status in plan files, and report the next item. If all items are complete, advise: clear context/start a new session, then run $commit."
