@@ -30,7 +30,7 @@ Rules for the page:
 
 - One self-contained HTML file — keep template colors, fonts, and CSS; no JS or frameworks.
 - Font: Commit Mono via template CDN links; falls back to locally installed `CommitMono`.
-- Write to the workspace (e.g. `review.html`) and tell the user the path.
+- Save as `docs/<name>.html` — short contextual name from PR, branch, or scope (e.g. `pr-42-auth` or `feature-billing-webhooks`).
 - Accent CSS vars (`--red`, `--gold`, `--teal`, etc.) and `.accent-*` classes are available for emphasis.
 
 ## Content
