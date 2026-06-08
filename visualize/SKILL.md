@@ -1,7 +1,6 @@
 ---
 name: visualize
-description: Creates an HTML page for human to review.
-disable-model-invocation: true
+description: Builds a single-file HTML review page from a PR, git diff, or user scope to help humans scan changes quickly. Use when the user asks to visualize changes, review a PR visually, summarize diffs for review, or wants a scannable HTML overview before reading code.
 ---
 
 Create a single self-contained HTML review page for a PR, local changes, or user-specified scope.
