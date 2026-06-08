@@ -1,11 +1,11 @@
 ---
 name: branch-description
-description: Generate fixed-format GitLab pull/merge request descriptions from a branch commit range. Use when the user asks to summarize commits in a branch (especially release branches like release/x.y.z) into a deterministic PR/MR description with the exact same section structure every time.
+description: Generate fixed-format Github/GitLab pull/merge request descriptions from a branch commit range. Use when the user asks to summarize commits in a branch (especially release branches like release/x.y.z) into a deterministic PR/MR description with the exact same section structure every time.
 ---
 
 # Branch Description
 
-Generate a GitLab PR/MR description with a strict, repeatable structure.
+Generate a Github/GitLab PR/MR description with a strict, repeatable structure.
 
 ## Workflow
 

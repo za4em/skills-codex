@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><!-- title --></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/commit-mono@5.2.5/latin-400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/commit-mono@5.2.5/latin-600.css">
+  <style>
+    :root {
+      --bg: #000;
+      --surface: #0a0a0a;
+      --text: #ffffffd9;
+      --heading: #fffffff2;
+      --muted: #ffffff80;
+      --link: #3fb950;
+      --border: #222;
+      --code-bg: #111;
+
+      --red: #ff6b6b;
+      --gold: #f0c040;
+      --purple: #c084fc;
+      --teal: #2dd4bf;
+      --pink: #f472b6;
+      --orange: #fb923c;
+      --sky: #38bdf8;
+      --lime: #a3e635;
+
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "CommitMono", "Commit Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      font-variant-ligatures: contextual;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    main {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.01em;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    h2, h3, summary {
+      color: var(--heading);
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section > h2 {
+      margin: 0 0 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+    }
+
+    .card + .card { margin-top: 0.75rem; }
+
+    .card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .card p:last-child,
+    .card ul:last-child,
+    .card ol:last-child { margin-bottom: 0; }
+
+    .warn {
+      background: color-mix(in srgb, var(--gold) 8%, var(--bg));
+      border: 1px solid color-mix(in srgb, var(--gold) 35%, var(--border));
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      color: var(--text);
+    }
+
+    .warn strong { color: var(--gold); }
+
+    .warn + .warn { margin-top: 0.75rem; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      font-size: 0.875rem;
+    }
+
+    th, td {
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      background: var(--code-bg);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    code {
+      font-family: inherit;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      margin: 0;
+      padding: 0.85rem 1rem;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      border: none;
+    }
+
+    ul, ol { margin: 0.5rem 0; padding-left: 1.25rem; }
+    li + li { margin-top: 0.25rem; }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    details + details { margin-top: 0.5rem; }
+
+    summary {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    details > :not(summary) {
+      padding: 0 1rem 1rem;
+    }
+
+    /* optional accent helpers for agent use */
+    .accent-red { color: var(--red); }
+    .accent-gold { color: var(--gold); }
+    .accent-purple { color: var(--purple); }
+    .accent-teal { color: var(--teal); }
+    .accent-pink { color: var(--pink); }
+    .accent-orange { color: var(--orange); }
+    .accent-sky { color: var(--sky); }
+    .accent-lime { color: var(--lime); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1><!-- title --></h1>
+      <p><!-- scope: branch, PR, path, etc. --></p>
+    </header>
+
+    <!-- agent builds sections freely; use the classes above -->
+  </main>
+</body>
+</html>
